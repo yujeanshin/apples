@@ -1,0 +1,13 @@
+.block-container-container {
+    border: dashed #000;
+    display: table;
+    width: 5vw;
+    height: 5vw;
+    overflow: hidden;
+}
+
+.block-container {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
