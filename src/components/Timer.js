@@ -1,17 +1,20 @@
 import {useState, useEffect} from 'react';
 
-function Timer () {
+function Timer ({ onSecondsChange }) {
     const [seconds, setSeconds] = useState(120);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setSeconds((prevSeconds) => prevSeconds - 1);
+            setSeconds((prevSeconds) => {
+                onSecondsChange(prevSeconds - 1);
+                return prevSeconds - 1;
+            });
         }, 1000);
     
-        return () => clearInterval(interval); // Cleanup the interval on component unmount
-    }, []);
+        return () => clearInterval(interval);
+    }, [onSecondsChange]);
     
-    return seconds
+    return seconds;
 }
 
 export default Timer;
