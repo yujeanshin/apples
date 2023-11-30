@@ -8,10 +8,10 @@
     overflow: hidden;
 }
 
-.block-container-container .selected {
+.selected {
     background-color: #3089fc;
     color: black;
-    border: solid yellow 2px;
+    border: solid #000;
 }
 
 .block-container {

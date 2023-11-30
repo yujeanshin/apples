@@ -14,7 +14,11 @@ for (let row = 0; row < numRows; row ++) {
     gridVals.push(Array(5).fill(0));
     for (let col = 0; col < numCols; col ++) {
         // random integer from 1 to 9
-        gridVals[row][col] = Math.floor(Math.random() * 9) + 1;
+        gridVals[row][col] = {
+            id: [row, col],
+            className: "block-container-container",
+            number: Math.floor(Math.random() * 9) + 1
+        };
     }
 }
 console.log(gridVals);
@@ -24,23 +28,42 @@ function Game() {
 
     // makes the value null when clicked
     const handleBlockClick = (row, col) => {
-        const updatedGrid = grid.map((numbers, rowIndex) =>
-        rowIndex === row
-            ? numbers.map((number, colIndex) => (colIndex === col ? null : number))
-            : numbers
-        );
+        const updatedGrid = grid.map((blockRow, rowIndex) => {
+            // a box in this row has been clicked
+            if (rowIndex === row) {
+                return (
+                    blockRow.map((block, colIndex) => {
+                        // this particular block has been clicked
+                        if (colIndex === col) {
+                            return {
+                                id: [rowIndex, colIndex],
+                                className: "selected block-container-container",
+                                number: null
+                            };
+                        }
+                        // else, this block has not been clicked
+                        else { return block; }
+                    })
+                );
+            }
+            // else, no box in this row has been clicked
+            else { return blockRow; }
+        });
+
         console.log("updated", updatedGrid);
         // Update the state with the new grid
         setGrid(updatedGrid);
     };
 
-    let displayGrid = grid.map((numbers, rowIndex) => 
+    let displayGrid = grid.map((blockRow, rowIndex) => 
         <tr key={rowIndex}>
-            {numbers.map((number, colIndex) => 
-                <td>
-                    <Block number={number} onClick={() => handleBlockClick(rowIndex, colIndex)}/>
-                </td>
-            )}
+            {blockRow.map((block, colIndex) => {
+                return(
+                    <td>
+                        <Block id={block.id} className={block.className} number={block.number} onClick={() => handleBlockClick(rowIndex, colIndex)} />
+                    </td>
+                );
+            })}
         </tr>
     );
 
