@@ -1,9 +1,17 @@
 .block-container-container {
-    border: dashed #000;
+    color: black;
+    border: solid #000;
+    border-radius: 5px;
     display: table;
-    width: 5vw;
-    height: 5vw;
+    width: 5em;
+    height: 5em;
     overflow: hidden;
+}
+
+.block-container-container .selected {
+    background-color: #3089fc;
+    color: black;
+    border: solid yellow 2px;
 }
 
 .block-container {
