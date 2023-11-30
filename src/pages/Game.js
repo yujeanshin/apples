@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Timer from '../components/Timer'
 import Block from '../components/Block'
 import '../styles/Game.css'
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const numRows = 10;
 const numCols = 17;
@@ -20,30 +20,18 @@ for (let row = 0; row < numRows; row ++) {
 console.log(grid);
 
 function Game() {
-    let newGrid = [];
-    newGrid = grid.map((numbers, index) => 
+    let newGrid = grid.map((numbers, index) => 
         <tr key={index}>
             {numbers.map((number) => 
                 <td><Block number={number}/></td>
             )}
         </tr>
     );
-
-    const navigate = useNavigate();
-    const [totalSeconds, setTotalSeconds] = useState(120);
-
-    const handleSecondsChange = (newSeconds) => {
-        setTotalSeconds(newSeconds);
-    };
-
-    if (totalSeconds === 0) {
-        navigate('/gameover');
-    }
     
     return (
     <>
     <div id="header">
-        <span>Timer: <Timer onSecondsChange={handleSecondsChange} /> </span>
+        <span>Timer: <Timer /> </span>
         <span>Apple Game</span>
     </div>
     <table>

@@ -1,18 +1,20 @@
 import {useState, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom'
 
-function Timer ({ onSecondsChange }) {
+function Timer () {
     const [seconds, setSeconds] = useState(120);
+    const navigate = useNavigate();
+    if (seconds === 115) {
+        navigate('/gameover');
+    }
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setSeconds((prevSeconds) => {
-                onSecondsChange(prevSeconds - 1);
-                return prevSeconds - 1;
-            });
+            setSeconds((prevSeconds) => prevSeconds - 1);
         }, 1000);
     
         return () => clearInterval(interval);
-    }, [onSecondsChange]);
+    }, [setSeconds]);
     
     return seconds;
 }
