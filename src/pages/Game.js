@@ -1,16 +1,21 @@
 import React from 'react'
-import Block from '../components/Block'
+import Grid from '../components/Grid'
+import Timer from '../components/Timer'
+import '../styles/Game.css'
 
 import { Link } from 'react-router-dom';
 
-function Game() {
-  return (
+function Game({grid}) {
+    return (
     <>
-    <div>Game</div>
-    <Block number={10}/>
+    <div id="header">
+        <span>Timer: <Timer /> </span>
+        <span>Apple Game</span>
+    </div>
+    <Grid grid={grid}/>
     <Link to="/">Return to Home</Link>
     </>
-  )
+    )
 }
 
 export default Game
