@@ -8,14 +8,21 @@
     overflow: hidden;
 }
 
-.selected {
-    background-color: #3089fc;
-    color: black;
-    border: solid #000;
-}
-
 .block-container {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+}
+
+.selected {
+    background-color: rgba(48, 137, 252, 0.5);
+    color: black;
+    border: solid #000;
+}
+
+.removed {
+    background-color: #FFF;
+    color: white;
+    border: none;
+    opacity: 0;
 }
