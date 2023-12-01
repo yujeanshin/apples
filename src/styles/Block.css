@@ -14,8 +14,18 @@
     text-align: center;
 }
 
+.no-select-text {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
+
 .selected {
-    background-color: rgba(48, 137, 252, 0.5);
+    background-color: #5399f5;
     color: black;
     border: solid #000;
 }
@@ -25,4 +35,10 @@
     color: white;
     border: none;
     opacity: 0;
+}
+
+.selection-box {
+    background-color: rgba(102, 162, 242, 0.4);
+    position: absolute;
+    z-index: 99;
 }
