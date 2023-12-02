@@ -78,5 +78,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### useful click and drag github example
 https://pablofierro.github.io/react-drag-select/
 
+### library i used
+https://github.com/andreizanik/react-mouse-select/tree/master
+
 ### information on JS coordinates
 https://javascript.info/coordinates

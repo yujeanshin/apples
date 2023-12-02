@@ -1,6 +1,5 @@
 import React from 'react'
 import Grid from '../components/Grid'
-import SelectionBox from '../components/SelectionBox'
 // import Timer from '../components/Timer'
 import '../styles/Game.css'
 

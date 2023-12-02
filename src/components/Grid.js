@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
 import Block from './Block'
-// import SelectionBox from './SelectionBox'
 import "../styles/Block.css"
 
 import { ReactMouseSelect } from 'react-mouse-select'
@@ -21,12 +20,10 @@ for (let row = 0; row < numRows; row++) {
         };
     }
 }
-// console.log(gridVals);
 
 
 function Grid() {
     // selection box
-    // const borderSelectionContainer = document.getElementById('portal');
     const containerRef = useRef(null);
 
     const [isSelecting, setIsSelecting] = useState(false);
@@ -37,7 +34,6 @@ function Grid() {
         setSelectedItems([]);
     }
     const finishSelection = (items, e) => {
-        // console.log(items)
         setIsSelecting(false);
         const selectedIds = items.map(item => item.getAttribute('id'));
         setSelectedItems(selectedIds);
@@ -63,7 +59,6 @@ function Grid() {
         {displayGrid}
         <ReactMouseSelect
             containerRef={containerRef}
-            // portalContainer={borderSelectionContainer}
             itemClassName={"block-container-container"}
             startSelectionCallback={handleStartSelection}
             finishSelectionCallback={finishSelection}

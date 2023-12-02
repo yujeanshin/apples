@@ -2,11 +2,6 @@ import React from 'react'
 import '../styles/Block.css'
 
 function Block({id, active, className, number, onClick}) {
-  const handleClick = () => {
-    if (onClick) {
-      onClick();
-    }
-  };
 
   return (
     <>
