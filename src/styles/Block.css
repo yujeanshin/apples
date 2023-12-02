@@ -24,7 +24,7 @@
                                     supported by Chrome, Edge, Opera and Firefox */
   }
 
-.selected, .active {
+.selected {
     background-color: #e36969;
     color: black;
     border: solid #000;

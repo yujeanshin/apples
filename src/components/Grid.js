@@ -26,51 +26,33 @@ for (let row = 0; row < numRows; row++) {
 
 function Grid() {
     const [grid, setGrid] = useState(gridVals);
+    const [score, setScore] = useState(0);
 
     const containerRef = useRef(null);
 
-    // "is the selection box in use"?
-    const [isSelecting, setIsSelecting] = useState(false);
-    // items that are currently selected with the selection box
-    const [selectedItems, setSelectedItems] = useState([]);
-
-    const handleStartSelection = () => {
-        setIsSelecting(true);
-        setSelectedItems([]);
-    }
     const finishSelection = (items, e) => {
-        setIsSelecting(false);
-        
-        // get selected items
-        const selectedIds = items.map(item => item.getAttribute('id'));
-        console.log(selectedIds)
-        setSelectedItems(selectedIds);
-        console.log(selectedItems)
-        
         // get sum of selected numbers
         const numbers = items.map(item => parseInt(item.getAttribute('number')));
         let sum = numbers.reduce((runningSum, current) => {return runningSum + current}, 0);
         
         // if the sum is the target, add .removed class
         if (sum === target) {
+            // get selected items
+            const selectedIds = items.map(item => item.getAttribute('id'));
             // add .removed to appropriate blocks
             let nextState = grid.map((blockRow, rowIndex) => 
                 {blockRow.map((block, colIndex) => {
-                    console.log(block.id)
-                    console.log(selectedIds)
+                    let blockTemp = block;
                     if (selectedIds.includes(block.id)) {
-                        console.log(block.id);
-                        let blockTemp = block;
                         blockTemp.className += " removed";
-                        return blockTemp;
+                        blockTemp.number = 0;
+                        setScore(prevState => prevState + 1)
                     }
-                    else { return block; }
+                    return blockTemp;
                 });
-            return blockRow;
-        });
-            console.log(nextState)
+                return blockRow;
+            });
             setGrid(nextState);
-            console.log(grid)
         }
     }
 
@@ -80,7 +62,7 @@ function Grid() {
             {blockRow.map((block, colIndex) => {
                 return (
                     <td>
-                        <Block id={block.id} active={selectedItems.includes(block.id)} className={block.className} number={block.number} />
+                        <Block id={block.id} className={block.className} number={block.number} />
                     </td>
                 );
             })}
@@ -93,9 +75,9 @@ function Grid() {
         <ReactMouseSelect
             containerRef={containerRef}
             itemClassName={"block-container-container"}
-            startSelectionCallback={handleStartSelection}
             finishSelectionCallback={finishSelection}
         />
+        <div>Score: {score}</div>
     </>
     );
 }

@@ -1,11 +1,11 @@
 import React from 'react'
 import '../styles/Block.css'
 
-function Block({id, active, className, number, onClick}) {
+function Block({id, className, number}) {
 
   return (
     <>
-    <div id={id} number={number} className={`${className} ${(active) ? 'active' : ''}`} >
+    <div id={id} number={number} className={className} >
         <div className="block-container">
             <div className="block">{number}</div>
         </div>
