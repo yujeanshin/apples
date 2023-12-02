@@ -21,12 +21,12 @@ for (let row = 0; row < numRows; row++) {
         };
     }
 }
-console.log(gridVals);
+// console.log(gridVals);
 
 
 function Grid() {
     // selection box
-    const borderSelectionContainer = document.getElementById('portal');
+    // const borderSelectionContainer = document.getElementById('portal');
     const containerRef = useRef(null);
 
     const [isSelecting, setIsSelecting] = useState(false);
@@ -37,16 +37,12 @@ function Grid() {
         setSelectedItems([]);
     }
     const finishSelection = (items, e) => {
+        // console.log(items)
         setIsSelecting(false);
-        const selectedIds = items.map(item => parseInt(item.getAttribute('data-id') || ''));
+        const selectedIds = items.map(item => item.getAttribute('id'));
         setSelectedItems(selectedIds);
-        let sum = 0;
-        console.log(selectedIds);
-        for (const blockId of selectedIds) {
-            // const blockElement = document.getElementById(blockId);
-            console.log(blockId);
-            // sum += blockElement.number;
-        }
+        const numbers = items.map(item => parseInt(item.getAttribute('number')));
+        let sum = numbers.reduce((runningSum, current) => {return runningSum + current}, 0);
     }
 
 
