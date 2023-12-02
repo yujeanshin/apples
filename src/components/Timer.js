@@ -1,13 +1,11 @@
 import {useState, useEffect} from 'react';
-import {useNavigate} from 'react-router-dom'
+// import {useNavigate} from 'react-router-dom'
 
-function Timer () {
-    const [seconds, setSeconds] = useState(120);
-    const navigate = useNavigate();
-    if (seconds === 0) {
-        navigate('/gameover');
-    }
+const totalSeconds = 5;
 
+function Timer (props) {
+    const [seconds, setSeconds] = useState(totalSeconds);
+    // const navigate = useNavigate();
     useEffect(() => {
         const interval = setInterval(() => {
             setSeconds((prevSeconds) => prevSeconds - 1);
@@ -15,8 +13,15 @@ function Timer () {
     
         return () => clearInterval(interval);
     }, [setSeconds]);
+
+    if (seconds === 0) {
+        props.onTimeUp();
+        return;
+    }
     
-    return seconds;
+    return(
+        <div>Timer: {seconds} </div>
+    );
 }
 
 export default Timer;
