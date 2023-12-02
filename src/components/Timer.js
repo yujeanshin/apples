@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 // import {useNavigate} from 'react-router-dom'
 
-const totalSeconds = 5;
+const totalSeconds = 10;
 
 function Timer (props) {
     const [seconds, setSeconds] = useState(totalSeconds);

@@ -1,7 +1,7 @@
 .block-container-container {
     color: black;
-    border: solid #000;
-    border-radius: 5px;
+    /* border: solid #000; */
+    /* border-radius: 5px; */
     display: table;
     width: 5em;
     height: 5em;
@@ -12,6 +12,8 @@
     display: table-cell;
     vertical-align: middle;
     text-align: center;
+    position: relative;
+    display: inline-block
 }
 
 .no-select-text {
@@ -25,9 +27,9 @@
   }
 
 .selected {
-    background-color: #e36969;
+    background-color: #d7e369;
     color: black;
-    border: solid #000;
+    /* border: solid #000; */
 }
 
 .removed {
@@ -39,6 +41,40 @@
 
 .mouse-select__frame {
     background-color: rgba(102, 242, 111, 0.6);
+    border-radius: 5px;
     position: absolute;
     z-index: 99;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    opacity: 100%;
+    pointer-events: none;
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+           -o-user-select: none;
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+}
+
+.block-text {
+    position: absolute;
+    top: 2em;
+    left: 0em;
+    color: #FFF;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+         -o-user-select: none;
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }

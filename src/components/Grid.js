@@ -5,8 +5,8 @@ import "../styles/Block.css"
 
 import { ReactMouseSelect } from 'react-mouse-select'
 
-const numRows = 10;
-const numCols = 17;
+const numRows = 8;
+const numCols = 8;
 
 const target = 10;
 
@@ -88,6 +88,7 @@ function Grid({score, setScore}) {
         {isGameOver ? (
             <>
             <div>GameOver</div>
+            <div>Final score: {score}</div>
             <button onClick={resetGame}>Restart</button>
             </>
         ) : (
@@ -100,6 +101,7 @@ function Grid({score, setScore}) {
                 containerRef={containerRef}
                 itemClassName={"block-container-container"}
                 finishSelectionCallback={finishSelection}
+                tolerance={10}
             />
         </>
         )

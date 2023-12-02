@@ -1,5 +1,6 @@
 import React from 'react'
 import '../styles/Block.css'
+import Apple from './apple.png'
 
 function Block({id, className, number}) {
 
@@ -7,7 +8,8 @@ function Block({id, className, number}) {
     <>
     <div id={id} number={number} className={className} >
         <div className="block-container">
-            <div className="block">{number}</div>
+            <img src={Apple} alt=""/>
+            <div className="block-text">{number}</div>
         </div>
     </div>
     </>
