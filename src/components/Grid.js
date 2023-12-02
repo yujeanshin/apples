@@ -23,6 +23,7 @@ console.log(gridVals);
 
 
 function Grid() {
+    // grid of numbers
     const [grid, setGrid] = useState(gridVals);
 
     // add class "selected" when clicked

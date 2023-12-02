@@ -26,12 +26,12 @@ function SelectionBox() {
         document.addEventListener("mousedown", (_event) => {
             setMouseDown(true);
             setMouseDownPos(mousePos);
+            console.log("down");
         });
         document.addEventListener("mouseup", (_event) => {
-            console.log(mouseDownPos);
-            console.log(selectionBox);
             setMouseDown(false);
             setSelectionBox({width: 0, height: 0});
+            console.log("up");
         });
         document.addEventListener("mousemove", (event) => {
             setMousePos({ x: event.clientX, y: event.clientY });
@@ -49,7 +49,7 @@ function SelectionBox() {
             document.removeEventListener("mouseup", handleEvent);
             document.removeEventListener("mousemove", handleEvent);
         };
-    }, [mouseDown, mouseDownPos, mousePos, selectionBox]);
+    }, [mouseDown, mousePos]);
 
     let boxStyle = {
         left: mouseDownPos.x,
@@ -57,6 +57,7 @@ function SelectionBox() {
         width: selectionBox.width,
         height: selectionBox.height
     };
+
     return (
         <div className="selection-box" style={boxStyle}></div>
     );
