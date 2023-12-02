@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/Block.css'
 
-function Block({id, className, number, onClick}) {
+function Block({id, active, className, number, onClick}) {
   const handleClick = () => {
     if (onClick) {
       onClick();
@@ -10,7 +10,7 @@ function Block({id, className, number, onClick}) {
 
   return (
     <>
-    <div id={id} className={className} onClick={handleClick}>
+    <div id={id} className={`${className} ${active ? 'active' : ''}`} onClick={handleClick}>
         <div className="block-container">
             <div className="block">{number}</div>
         </div>

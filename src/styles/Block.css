@@ -24,8 +24,8 @@
                                     supported by Chrome, Edge, Opera and Firefox */
   }
 
-.selected {
-    background-color: #5399f5;
+.selected, .active {
+    background-color: #e36969;
     color: black;
     border: solid #000;
 }
@@ -37,8 +37,8 @@
     opacity: 0;
 }
 
-.selection-box {
-    background-color: rgba(102, 162, 242, 0.4);
+.mouse-select__frame {
+    background-color: rgba(102, 242, 111, 0.6);
     position: absolute;
     z-index: 99;
 }

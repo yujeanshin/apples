@@ -15,6 +15,13 @@ function handleEvent(event, type) {
     }
 }
 
+let boxStyle = {
+    left: 0,
+    top: 0,
+    width: 0,
+    height: 0
+};
+
 function SelectionBox() {
     const [mouseDown, setMouseDown] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -26,12 +33,11 @@ function SelectionBox() {
         document.addEventListener("mousedown", (_event) => {
             setMouseDown(true);
             setMouseDownPos(mousePos);
-            console.log("down");
         });
         document.addEventListener("mouseup", (_event) => {
             setMouseDown(false);
+            setMouseDownPos({ x: 0, y: 0 });
             setSelectionBox({width: 0, height: 0});
-            console.log("up");
         });
         document.addEventListener("mousemove", (event) => {
             setMousePos({ x: event.clientX, y: event.clientY });
@@ -44,6 +50,7 @@ function SelectionBox() {
                 setSelectionBox({width: 0, height: 0});
             }
         });
+        // console.log(boxStyle)
         return () => {
             document.removeEventListener("mousedown", handleEvent);
             document.removeEventListener("mouseup", handleEvent);
@@ -51,7 +58,7 @@ function SelectionBox() {
         };
     }, [mouseDown, mousePos]);
 
-    let boxStyle = {
+    boxStyle = {
         left: mouseDownPos.x,
         top: mouseDownPos.y,
         width: selectionBox.width,

@@ -15,8 +15,7 @@ function Game() {
         <span>Apple Game</span>
     </div>
     <table>
-        <Grid />
-        <SelectionBox />
+        <Grid id={'portal'}/>
     </table>
     <Link to="/">Return to Home</Link>
     </>

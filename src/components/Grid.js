@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Block from './Block'
 // import SelectionBox from './SelectionBox'
 import "../styles/Block.css"
+
+import { ReactMouseSelect } from 'react-mouse-select'
 
 const numRows = 5;
 const numCols = 5;
@@ -23,46 +25,55 @@ console.log(gridVals);
 
 
 function Grid() {
-    // grid of numbers
-    const [grid, setGrid] = useState(gridVals);
+    // selection box
+    const borderSelectionContainer = document.getElementById('portal');
+    const containerRef = useRef(null);
 
-    // add class "selected" when clicked
-    const handleBlockClick = (row, col) => {
-        const updatedGrid = grid.map((blockRow, rowIndex) => {
-            // a box in this row has been clicked
-            if (rowIndex === row) {
-                return (
-                    blockRow.map((block, colIndex) => {
-                        // change className for the box that was clicked
-                        if (colIndex === col) {
-                            block.className += " selected"
-                        }
-                        return block;
-                    })
-                );
-            }
-            // else, no box in this row has been clicked
-            else { return blockRow; }
-        });
+    const [isSelecting, setIsSelecting] = useState(false);
+    const [selectedItems, setSelectedItems] = useState([]);
 
-        console.log("updated", updatedGrid);
-        // Update the state with the new grid
-        setGrid(updatedGrid);
-    };
+    const handleStartSelection = () => {
+        setIsSelecting(true);
+        setSelectedItems([]);
+    }
+    const finishSelection = (items, e) => {
+        setIsSelecting(false);
+        const selectedIds = items.map(item => parseInt(item.getAttribute('data-id') || ''));
+        setSelectedItems(selectedIds);
+        let sum = 0;
+        console.log(selectedIds);
+        for (const blockId of selectedIds) {
+            // const blockElement = document.getElementById(blockId);
+            console.log(blockId);
+            // sum += blockElement.number;
+        }
+    }
 
-    let displayGrid = grid.map((blockRow, rowIndex) =>
+
+    let displayGrid = gridVals.map((blockRow, rowIndex) =>
         <tr key={rowIndex}>
             {blockRow.map((block, colIndex) => {
                 return (
                     <td>
-                        <Block id={block.id} className={block.className} number={block.number} onClick={() => handleBlockClick(rowIndex, colIndex)} />
+                        <Block id={block.id} active={selectedItems.includes(block.id)} className={block.className} number={block.number} />
                     </td>
                 );
             })}
         </tr>
     );
 
-    return displayGrid;
+    return (
+    <>
+        {displayGrid}
+        <ReactMouseSelect
+            containerRef={containerRef}
+            // portalContainer={borderSelectionContainer}
+            itemClassName={"block-container-container"}
+            startSelectionCallback={handleStartSelection}
+            finishSelectionCallback={finishSelection}
+        />
+    </>
+    );
 }
 
 export default Grid
