@@ -1,19 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Grid from '../components/Grid'
 // import Timer from '../components/Timer'
 import '../styles/Game.css'
 
 import { Link } from 'react-router-dom';
 
-function Game() {
-    const [score, setScore] = useState(0);
+function Game({color, timerOn}) {
     return (
     <>
     <div id="header">
         {/* <span>Timer: <Timer /> </span> */}
         <span>Apple Game</span>
     </div>
-    <Grid score={score} setScore={setScore} />
+    <Grid color={color} timerOn={timerOn}/>
 
     <Link to="/">Return to Home</Link>
     </>

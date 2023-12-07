@@ -6,13 +6,23 @@ import "../styles/Block.css"
 import { ReactMouseSelect } from 'react-mouse-select'
 
 const numRows = 8;
-const numCols = 8;
+const numCols = 10;
 
 const target = 10;
 
 
-function Grid({score, setScore}) {
+function Grid({color, timerOn}) {
+    const [score, setScore] = useState(0);
     const [isGameOver, setIsGameOver] = useState(false);
+    const handleTimeUp = () => {
+        setIsGameOver(true);
+    }
+
+    const resetGame = () => {
+        setScore(0);
+        setIsGameOver(false);
+        setGrid(resetGrid());
+    }
 
     const resetGrid = () => {
         // create numRows x numCols array of numbers
@@ -67,45 +77,53 @@ function Grid({score, setScore}) {
             {blockRow.map((block) => {
                 return (
                     <td>
-                        <Block id={block.id} className={block.className} number={block.number} />
+                        <Block id={block.id} className={block.className} number={block.number} color={color}/>
                     </td>
                 );
             })}
         </tr>
     );
 
-    const handleTimeUp = () => {
-        setIsGameOver(true);
-    }
-
-    const resetGame = () => {
-        setIsGameOver(false);
-        setGrid(resetGrid());
-    }
-
-    return (
-    <>
-        {isGameOver ? (
-            <>
-            <div>GameOver</div>
-            <div>Final score: {score}</div>
-            <button onClick={resetGame}>Restart</button>
-            </>
-        ) : (
+    
+    if (timerOn) {
+        return (
         <>
-            <Timer onTimeUp={handleTimeUp} />
-            <div>Score: {score}</div>
-
-            <table>{displayGrid}</table>
-            <ReactMouseSelect
-                containerRef={containerRef}
-                itemClassName={"block-container-container"}
-                finishSelectionCallback={finishSelection}
-                tolerance={10}
-            />
+            {isGameOver ? (
+                <>
+                <div>Game Over</div>
+                <div>Final score: {score} out of {numRows*numCols}</div>
+                <button onClick={resetGame}>Restart</button>
+                </>
+            ) : (
+            <>
+                <Timer onTimeUp={handleTimeUp} />
+                <div>Score: {score}</div>
+                <button onClick={resetGame}>Restart</button>
+                <table>{displayGrid}</table>
+                <ReactMouseSelect
+                    containerRef={containerRef}
+                    itemClassName={"block-container-container"}
+                    finishSelectionCallback={finishSelection}
+                    tolerance={5}
+                />
+            </>
+            )
+            }
         </>
-        )
-        }
+        );
+    }
+    
+    return (
+        <>
+        <div>Score: {score}</div>
+        <button onClick={resetGame}>Restart</button>
+        <table>{displayGrid}</table>
+        <ReactMouseSelect
+            containerRef={containerRef}
+            itemClassName={"block-container-container"}
+            finishSelectionCallback={finishSelection}
+            tolerance={5}
+        />
     </>
     );
 }

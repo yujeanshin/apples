@@ -29,6 +29,7 @@
 .selected {
     background-color: #d7e369;
     color: black;
+    border-radius: 10px;
     /* border: solid #000; */
 }
 
@@ -41,7 +42,6 @@
 
 .mouse-select__frame {
     background-color: rgba(102, 242, 111, 0.6);
-    border-radius: 5px;
     position: absolute;
     z-index: 99;
 }

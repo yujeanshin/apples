@@ -1,15 +1,21 @@
 import React from 'react'
 import '../styles/Block.css'
-import Apple from './apple.png'
+import Red from '../components/red.png'
+import Orange from '../components/orange.png'
+import Gray from '../components/gray.png'
+import None from '../components/none.png'
 
-function Block({id, className, number}) {
+let noneIndex = 3;
 
+// {`color: ${color === 3 ? '#000' : '#FFF'}`}
+function Block({id, className, number, color}) {
+  let fruits = [Red, Orange, Gray, None];
   return (
     <>
-    <div id={id} number={number} className={className} >
+    <div id={id} number={number} className={className} style={{border: color===noneIndex ? 'solid #000' : 'none', borderRadius: '10px'}}>
         <div className="block-container">
-            <img src={Apple} alt=""/>
-            <div className="block-text">{number}</div>
+            <img src={fruits[color]} alt=""/>
+            <div className="block-text" style={{color: color===noneIndex ? '#000' : '#FFF'}}>{number}</div>
         </div>
     </div>
     </>
