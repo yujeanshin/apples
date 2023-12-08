@@ -37,28 +37,35 @@ function Settings({colors, color, setColor, timerOn, setTimerOn, soundOn, setSou
   
   return (
     <>
-    <div>Settings</div>
-    <div id="color-change-container">
-      Color: <select name="chooseFruit" onChange={onColorChange}>
-        {colorOptions}
-      </select>
+    <h1>Settings</h1>
+    
+    <div className="settings-container">
+
+      <div id="color-change-container">
+        Color: <select name="chooseFruit" onChange={onColorChange}>
+          {colorOptions}
+        </select>
+      </div>
+
+      <div id="timer-toggle-container">
+        <p>Toggle timer</p>
+        <label class="switch" onChange={onTimerChange}>
+            <input type="checkbox" checked={timerOn}/>
+            <span class="slider"></span>
+        </label>
+      </div>
+
+      <div id="sound-toggle-container">
+        <p>Toggle sound</p>
+        <label class="switch" onChange={onSoundChange}>
+            <input type="checkbox" checked={soundOn} />
+            <span class="slider"></span>
+        </label>
+      </div>
+
     </div>
-    <div id="timer-toggle-container">
-      <p>Toggle timer</p>
-      <label class="switch" onChange={onTimerChange}>
-          <input type="checkbox" checked={timerOn}/>
-          <span class="slider"></span>
-      </label>
-    </div>
-    <div id="sound-toggle-container">
-    <p>Toggle sound</p>
-    <label class="switch" onChange={onSoundChange}>
-        <input type="checkbox" checked={soundOn} />
-        <span class="slider"></span>
-    </label>
-    </div>
-    <hr/>
-    <Link to="/">Return to Home</Link>
+    
+    <Link to="/" className="link-container link"><button>Return to Home</button></Link>
     </>
   )
 }

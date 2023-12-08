@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Block from './Block'
 import Timer from './Timer'
-import "../styles/Block.css"
+import '../styles/Grid.css'
 import pop from "../images/pop.mp3"
 
 import { ReactMouseSelect } from 'react-mouse-select'
@@ -11,7 +11,7 @@ const numCols = 8;
 
 const target = 10;
 
-const totalSeconds = 120;
+const totalSeconds = 60;
 
 function Grid({color, timerOn, soundOn}) {
     const [score, setScore] = useState(0);
@@ -99,15 +99,22 @@ function Grid({color, timerOn, soundOn}) {
         <>
             {isGameOver ? (
                 <>
-                <div>Game Over</div>
-                <div>Final score: {score} out of {numRows*numCols}</div>
-                <button onClick={resetGame}>Restart</button>
+                <div className="header-game-over">
+                    <h3>Game Over</h3>
+                    <p>Final score: {score} out of {numRows*numCols}</p>
+                </div>
+                <div className="link-container">
+                    <button onClick={resetGame}>Restart</button>
+                </div>
                 </>
             ) : (
             <>
-                <Timer onTimeUp={handleTimeUp} seconds={seconds} setSeconds={setSeconds}/>
-                <div>Score: {score}</div>
-                <button onClick={resetGame}>Restart</button>
+                <div className="header-game">
+                    <Timer onTimeUp={handleTimeUp} seconds={seconds} setSeconds={setSeconds}/>
+                    <span className="space-between-elements"></span>
+                    <span>Score: {score}</span>
+                </div>
+                <div className="link-container"><button onClick={resetGame}>Restart</button></div>
                 <table>{displayGrid}</table>
                 <ReactMouseSelect
                     itemClassName={"block-container-container"}
@@ -123,8 +130,10 @@ function Grid({color, timerOn, soundOn}) {
     
     return (
         <>
-        <div>Score: {score}</div>
-        <button onClick={resetGame}>Restart</button>
+        <div className="header-game">
+            <span>Score: {score}</span>
+        </div>
+        <div className="link-container"><button onClick={resetGame}>Restart</button></div>
         <table>{displayGrid}</table>
         <ReactMouseSelect
             itemClassName={"block-container-container"}

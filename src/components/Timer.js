@@ -1,8 +1,6 @@
 import {useEffect} from 'react';
 
 function Timer (props) {
-    // const [seconds, setSeconds] = useState(totalSeconds);
-    // const navigate = useNavigate();
     useEffect(() => {
         const interval = setInterval(() => {
             props.setSeconds((prevSeconds) => prevSeconds - 1);

@@ -1,4 +1,5 @@
 import React from 'react'
+import TitleCard from '../images/title-crop.png'
 
 import { Link } from 'react-router-dom';
 
@@ -6,13 +7,14 @@ function Home() {
   return (
     <>
     <div className="header">
-        <h1>Apple Game</h1>
+        <img src={TitleCard} alt="Apple Game"/>
     </div>
-    <div>
-        <Link to="/game">Game</Link>
-        <br />
-        <Link to="/settings">Settings</Link>
-    </div>
+    <div className="link-container">
+        <span><Link to="/game"><button>Start Game</button></Link></span>
+        <br/>
+        <br/>
+        <span><Link to="/settings"><button>Settings</button></Link></span>
+      </div>
     </>
   );
 }

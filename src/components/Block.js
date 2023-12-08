@@ -5,6 +5,7 @@ import Orange from '../images/orange.png'
 import Gray from '../images/gray.png'
 import None from '../images/none.png'
 
+// index of the None color
 let noneIndex = 3;
 
 function Block({id, className, number, color}) {
