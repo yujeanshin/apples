@@ -7,7 +7,6 @@ import None from '../images/none.png'
 
 let noneIndex = 3;
 
-// {`color: ${color === 3 ? '#000' : '#FFF'}`}
 function Block({id, className, number, color}) {
   let fruits = [Red, Orange, Gray, None];
   return (

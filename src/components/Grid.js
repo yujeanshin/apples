@@ -73,23 +73,9 @@ function Grid({color, timerOn, soundOn}) {
                     return blockRow;
                 }
             ));
-            // let nextState = grid.map((blockRow) =>
-            //     {blockRow.map((block) => {
-            //         let blockTemp = block;
-            //         if (selectedIds.includes(block.id)) {
-            //             blockTemp.className += " removed";
-            //             blockTemp.number = 0;
-            //             setScore(prevState => prevState + 1)
-            //         }
-            //         return blockTemp;
-            //         });
-            //         return blockRow;
-            //     });
-            // setGrid(nextState);
         }
     }
     
-    // active: 2 means target, 1 means simply selected, 0 means no change
     let displayGrid = grid.map((blockRow, rowIndex) =>
         <tr key={rowIndex}>
             {blockRow.map((block) => {

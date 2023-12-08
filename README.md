@@ -1,4 +1,5 @@
 # Overview
+This project was created using HTML, CSS, and the React.js library.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -74,11 +75,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # Other Citations
 
-### library used to aid click-and-drag implementation
-https://github.com/andreizanik/react-mouse-select/tree/master
+### click-and-drag implementation
+I used this library to help implement the click-and-drag functionality: [https://github.com/andreizanik/react-mouse-select/tree/master] (https://github.com/andreizanik/react-mouse-select/tree/master)
 
 ### sound effect source
-https://freesound.org/people/greenvwbeetle/sounds/328118/
+The sound effect made when apples are connected can be found here: [https://freesound.org/people/greenvwbeetle/sounds/328118/] (https://freesound.org/people/greenvwbeetle/sounds/328118/)
 
-### while I made the apple pixel art myself, I used this website to draw it
-https://www.pixilart.com/draw
+### pixel art website
+While I made the fruit pixel art for this project myself, I used this website to draw it: [https://www.pixilart.com/draw] (https://www.pixilart.com/draw)
