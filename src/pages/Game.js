@@ -5,14 +5,14 @@ import '../styles/Game.css'
 
 import { Link } from 'react-router-dom';
 
-function Game({color, timerOn}) {
+function Game({color, timerOn, soundOn}) {
     return (
     <>
     <div id="header">
         {/* <span>Timer: <Timer /> </span> */}
         <span>Apple Game</span>
     </div>
-    <Grid color={color} timerOn={timerOn}/>
+    <Grid color={color} timerOn={timerOn} soundOn={soundOn}/>
 
     <Link to="/">Return to Home</Link>
     </>

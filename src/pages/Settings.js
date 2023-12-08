@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import '../styles/Settings.css';
+import pop from "../images/pop.mp3"
 
 import { Link } from 'react-router-dom';
 
-function Settings({colors, color, setColor, timerOn, setTimerOn}) {
+function Settings({colors, color, setColor, timerOn, setTimerOn, soundOn, setSoundOn}) {
   let colorOptions = colors.map((value, index) => 
     {
       if (index === color) {
@@ -12,6 +13,7 @@ function Settings({colors, color, setColor, timerOn, setTimerOn}) {
       return (<option>{value}</option>)
     }
   );
+
   const onColorChange = (e) => {
     const index = e.target.selectedIndex;
     setColor(index);
@@ -21,17 +23,37 @@ function Settings({colors, color, setColor, timerOn, setTimerOn}) {
     setTimerOn(prevState => !prevState);
   }
 
+  const popAudio = new Audio(pop);
+
+  const onSoundChange = () => {
+    setSoundOn(prevState => !prevState);
+  }
+
+  useEffect(() => {
+    if (soundOn) {
+      popAudio.play();
+    }
+  }, [soundOn]);
+  
   return (
     <>
     <div>Settings</div>
     <div id="color-change-container">
-      <select name="chooseFruit" onChange={onColorChange}>
+      Color: <select name="chooseFruit" onChange={onColorChange}>
         {colorOptions}
       </select>
     </div>
     <div id="timer-toggle-container">
-    <label class="switch" onChange={onTimerChange}>
-        <input type="checkbox" checked={timerOn}/>
+      <p>Toggle timer</p>
+      <label class="switch" onChange={onTimerChange}>
+          <input type="checkbox" checked={timerOn}/>
+          <span class="slider"></span>
+      </label>
+    </div>
+    <div id="sound-toggle-container">
+    <p>Toggle sound</p>
+    <label class="switch" onChange={onSoundChange}>
+        <input type="checkbox" checked={soundOn} />
         <span class="slider"></span>
     </label>
     </div>

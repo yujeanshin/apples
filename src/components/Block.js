@@ -1,9 +1,9 @@
 import React from 'react'
 import '../styles/Block.css'
-import Red from '../components/red.png'
-import Orange from '../components/orange.png'
-import Gray from '../components/gray.png'
-import None from '../components/none.png'
+import Red from '../images/red.png'
+import Orange from '../images/orange.png'
+import Gray from '../images/gray.png'
+import None from '../images/none.png'
 
 let noneIndex = 3;
 

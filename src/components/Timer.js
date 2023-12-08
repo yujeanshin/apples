@@ -1,26 +1,24 @@
 import {useState, useEffect} from 'react';
 // import {useNavigate} from 'react-router-dom'
 
-const totalSeconds = 60;
-
 function Timer (props) {
-    const [seconds, setSeconds] = useState(totalSeconds);
+    // const [seconds, setSeconds] = useState(totalSeconds);
     // const navigate = useNavigate();
     useEffect(() => {
         const interval = setInterval(() => {
-            setSeconds((prevSeconds) => prevSeconds - 1);
+            props.setSeconds((prevSeconds) => prevSeconds - 1);
         }, 1000);
     
         return () => clearInterval(interval);
-    }, [setSeconds]);
+    }, [props.setSeconds]);
 
-    if (seconds === 0) {
+    if (props.seconds === 0) {
         props.onTimeUp();
         return;
     }
     
     return(
-        <div>Timer: {seconds} </div>
+        <div>Timer: {props.seconds} </div>
     );
 }
 

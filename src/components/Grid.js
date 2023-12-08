@@ -1,27 +1,24 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import Block from './Block'
-import Timer from '../components/Timer'
+import Timer from './Timer'
 import "../styles/Block.css"
+import pop from "../images/pop.mp3"
 
 import { ReactMouseSelect } from 'react-mouse-select'
 
 const numRows = 8;
-const numCols = 10;
+const numCols = 8;
 
 const target = 10;
 
+const totalSeconds = 120;
 
-function Grid({color, timerOn}) {
+function Grid({color, timerOn, soundOn}) {
     const [score, setScore] = useState(0);
+    const [seconds, setSeconds] = useState(totalSeconds);
     const [isGameOver, setIsGameOver] = useState(false);
     const handleTimeUp = () => {
         setIsGameOver(true);
-    }
-
-    const resetGame = () => {
-        setScore(0);
-        setIsGameOver(false);
-        setGrid(resetGrid());
     }
 
     const resetGrid = () => {
@@ -40,10 +37,17 @@ function Grid({color, timerOn}) {
         }
         return gridVals;
     }
+
+    const resetGame = () => {
+        setScore(0);
+        setIsGameOver(false);
+        setGrid(resetGrid());
+        setSeconds(totalSeconds);
+    }
     
     const [grid, setGrid] = useState(resetGrid());
 
-    const containerRef = useRef(null);
+    const popAudio = new Audio(pop);
 
     const finishSelection = (items, e) => {
         // get sum of selected numbers
@@ -52,25 +56,39 @@ function Grid({color, timerOn}) {
         
         // if the sum is the target, add .removed class
         if (sum === target) {
+            if (soundOn) { popAudio.play() }
             // get selected items
             const selectedIds = items.map(item => item.getAttribute('id'));
             // add .removed to appropriate blocks
-            let nextState = grid.map((blockRow) =>
+            setGrid(prevGrid => prevGrid.map((blockRow) => 
                 {blockRow.map((block) => {
                     let blockTemp = block;
                     if (selectedIds.includes(block.id)) {
                         blockTemp.className += " removed";
                         blockTemp.number = 0;
-                        setScore(prevState => prevState + 1)
+                        setScore(prevScore => prevScore + 1)
                     }
                     return blockTemp;
-                });
-                return blockRow;
-            });
-            setGrid(nextState);
+                    });
+                    return blockRow;
+                }
+            ));
+            // let nextState = grid.map((blockRow) =>
+            //     {blockRow.map((block) => {
+            //         let blockTemp = block;
+            //         if (selectedIds.includes(block.id)) {
+            //             blockTemp.className += " removed";
+            //             blockTemp.number = 0;
+            //             setScore(prevState => prevState + 1)
+            //         }
+            //         return blockTemp;
+            //         });
+            //         return blockRow;
+            //     });
+            // setGrid(nextState);
         }
     }
-
+    
     // active: 2 means target, 1 means simply selected, 0 means no change
     let displayGrid = grid.map((blockRow, rowIndex) =>
         <tr key={rowIndex}>
@@ -84,7 +102,12 @@ function Grid({color, timerOn}) {
         </tr>
     );
 
-    
+    useEffect(() => {
+        if (score === numRows*numCols) {
+            setIsGameOver(true);
+        }
+    }, [score]);
+
     if (timerOn) {
         return (
         <>
@@ -96,12 +119,11 @@ function Grid({color, timerOn}) {
                 </>
             ) : (
             <>
-                <Timer onTimeUp={handleTimeUp} />
+                <Timer onTimeUp={handleTimeUp} seconds={seconds} setSeconds={setSeconds}/>
                 <div>Score: {score}</div>
                 <button onClick={resetGame}>Restart</button>
                 <table>{displayGrid}</table>
                 <ReactMouseSelect
-                    containerRef={containerRef}
                     itemClassName={"block-container-container"}
                     finishSelectionCallback={finishSelection}
                     tolerance={5}
@@ -119,7 +141,6 @@ function Grid({color, timerOn}) {
         <button onClick={resetGame}>Restart</button>
         <table>{displayGrid}</table>
         <ReactMouseSelect
-            containerRef={containerRef}
             itemClassName={"block-container-container"}
             finishSelectionCallback={finishSelection}
             tolerance={5}

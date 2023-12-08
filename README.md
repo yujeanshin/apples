@@ -1,5 +1,4 @@
-# Getting Started with Create React App
-
+# Overview
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -73,13 +72,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
+# Other Citations
 
-
-### useful click and drag github example
-https://pablofierro.github.io/react-drag-select/
-
-### library i used
+### library used to aid click-and-drag implementation
 https://github.com/andreizanik/react-mouse-select/tree/master
 
-### information on JS coordinates
-https://javascript.info/coordinates
+### sound effect source
+https://freesound.org/people/greenvwbeetle/sounds/328118/
+
+### while I made the apple pixel art myself, I used this website to draw it
+https://www.pixilart.com/draw
