@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 
 function Timer (props) {
+    // decrement the seconds state each 1000 milliseconds
     useEffect(() => {
         const interval = setInterval(() => {
             props.setSeconds((prevSeconds) => prevSeconds - 1);
