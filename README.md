@@ -1,3 +1,10 @@
+# Links
+## Github
+The project was not able to be uploaded within the Gradescope file limit, so this is a link to the Github repo where it is housed:
+[https://github.com/yujeanshin/apples] (https://github.com/yujeanshin/apples)
+## Video Presentation
+[https://www.youtube.com/watch?v=SCbrMQnYthI] (https://www.youtube.com/watch?v=SCbrMQnYthI)
+
 # Overview
 This project was created using HTML, CSS, and the React.js library.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -73,7 +80,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-# Other Citations
+## Other Citations
 
 ### click-and-drag implementation
 I used this library to help implement the click-and-drag functionality: [https://github.com/andreizanik/react-mouse-select/tree/master] (https://github.com/andreizanik/react-mouse-select/tree/master)
@@ -83,3 +90,6 @@ The sound effect made when apples are connected can be found here: [https://free
 
 ### pixel art website
 While I made the fruit pixel art for this project myself, I used this website to draw it: [https://www.pixilart.com/draw] (https://www.pixilart.com/draw)
+
+### inspiration
+This project is based on the "사과게임" ("Apple Game") by JI EUN KIM, which can be found in the Apple App Store.
